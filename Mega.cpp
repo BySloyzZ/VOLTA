@@ -42,8 +42,8 @@ if (digitalRead(read_croisement) == 1) {
   }
 }
 if (digitalRead(read_gauche) == 1) {
-  gauche();
   Serial.println("Gauche");
+  gauche();
     while (digitalRead(read_gauche) == 1) {
       delay(100);
   }
@@ -56,8 +56,8 @@ if (digitalRead(read_warning) == 1) {
   }
 }
 if (digitalRead(read_droit) == 1) {
-  droit();
   Serial.println("Droit");
+  droit();
   while (digitalRead(read_droit) == 1) {
       delay(100);
   }
@@ -123,7 +123,7 @@ void croisement() {
   }
 }
 void gauche() {
-  for (int i; i<3; i++) {
+  for (int i=0; i<3; i++) {
 
   for(int i=25;i<32;i++){
     pixels.setPixelColor(i, pixels.Color(255, 180, 0)); 
@@ -142,8 +142,7 @@ void gauche() {
   }
 }
 void droit() {
-  for (int i; i<3; i++) {
-
+  for (int i=0; i<3; i++) {
   for(int i=9;i<16;i++){
     pixels.setPixelColor(i, pixels.Color(255, 180, 0)); 
     pixels.show();
@@ -160,7 +159,7 @@ void droit() {
   }
 }
 void warning() {
-  for (int i; i<3; i++) {
+  for (int i=0; i<3; i++) {
 
   for(int i=9;i<16;i++){
     pixels.setPixelColor(i, pixels.Color(255, 180, 0)); 
