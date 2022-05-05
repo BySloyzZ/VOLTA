@@ -101,11 +101,11 @@ void croisement() {
     feux_route = false;
     digitalWrite(send_croisement, HIGH);
   for(int i=0;i<9;i++){
-    pixels.setPixelColor(i, pixels.Color(50, 50, 50)); 
+    pixels.setPixelColor(i, pixels.Color(30, 30, 30)); 
     pixels.show();
   }
   for(int i=16;i<25;i++){
-    pixels.setPixelColor(i, pixels.Color(50, 50, 50)); 
+    pixels.setPixelColor(i, pixels.Color(30, 30, 30)); 
     pixels.show();
   }
   } else {
