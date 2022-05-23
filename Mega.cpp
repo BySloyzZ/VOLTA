@@ -42,8 +42,8 @@ if (digitalRead(read_croisement) == 1) {
   }
 }
 if (digitalRead(read_gauche) == 1) {
-  Serial.println("Gauche");
   gauche();
+  Serial.println("Gauche");
     while (digitalRead(read_gauche) == 1) {
       delay(100);
   }
@@ -56,8 +56,8 @@ if (digitalRead(read_warning) == 1) {
   }
 }
 if (digitalRead(read_droit) == 1) {
-  Serial.println("Droit");
   droit();
+  Serial.println("Droit");
   while (digitalRead(read_droit) == 1) {
       delay(100);
   }
@@ -101,11 +101,11 @@ void croisement() {
     feux_route = false;
     digitalWrite(send_croisement, HIGH);
   for(int i=0;i<9;i++){
-    pixels.setPixelColor(i, pixels.Color(30, 30, 30)); 
+    pixels.setPixelColor(i, pixels.Color(50, 50, 50)); 
     pixels.show();
   }
   for(int i=16;i<25;i++){
-    pixels.setPixelColor(i, pixels.Color(30, 30, 30)); 
+    pixels.setPixelColor(i, pixels.Color(50, 50, 50)); 
     pixels.show();
   }
   } else {
@@ -123,7 +123,7 @@ void croisement() {
   }
 }
 void gauche() {
-  for (int i=0; i<3; i++) {
+  for (int i; i<3; i++) {
 
   for(int i=25;i<32;i++){
     pixels.setPixelColor(i, pixels.Color(255, 180, 0)); 
@@ -142,7 +142,8 @@ void gauche() {
   }
 }
 void droit() {
-  for (int i=0; i<3; i++) {
+  for (int i; i<3; i++) {
+
   for(int i=9;i<16;i++){
     pixels.setPixelColor(i, pixels.Color(255, 180, 0)); 
     pixels.show();
@@ -159,7 +160,7 @@ void droit() {
   }
 }
 void warning() {
-  for (int i=0; i<3; i++) {
+  for (int i; i<3; i++) {
 
   for(int i=9;i<16;i++){
     pixels.setPixelColor(i, pixels.Color(255, 180, 0)); 
