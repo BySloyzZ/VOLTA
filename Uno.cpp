@@ -59,7 +59,8 @@ void loop() {
   // 5 = croisement
   // 6 = route
   // 7 = droit
-    
+
+    Serial.println(digitalRead(4) == 1);
       if (digitalRead(4) == 1) {
         for (int i; i<3; i++){
         mySerial.print("bt0.val="); 
@@ -84,7 +85,6 @@ void loop() {
         mySerial.write(0xff);
         mySerial.write(0xff);
         delay(500);
-        Serial.println("ici");
         };
       };
   
