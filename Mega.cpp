@@ -10,6 +10,8 @@ int send_route = 28;
 int send_croisement = 38;
 int send_gauche = 40;
 int send_droit = 26;
+int send_plaf = 6;
+
 
 bool feux_route = false;
 bool feux_croisement = false;
@@ -19,10 +21,24 @@ int read_croisement = 13;//13
 int read_gauche = 11;
 int read_warning = 10;//10
 int read_droit = 9;//9
+int read_plaf = 5;
 
 void setup() {
 Serial.begin(9600);
 pixels.begin();
+
+pinMode(send_route, OUTPUT);
+pinMode(send_croisement, OUTPUT);
+pinMode(send_gauche, OUTPUT);
+pinMode(send_droit, OUTPUT);
+pinMode(send_plaf, OUTPUT);
+
+pinMode(read_route, INPUT);
+pinMode(read_croisement, INPUT);
+pinMode(read_gauche, INPUT);
+pinMode(read_warning, INPUT);
+pinMode(read_droit, INPUT);
+pinMode(read_plaf, INPUT);
 }
 
 
@@ -61,6 +77,17 @@ if (digitalRead(read_droit) == 1) {
   while (digitalRead(read_droit) == 1) {
       delay(100);
   }
+}
+if (digitalRead(read_plaf) == 1) {
+  analogWrite(send_plaf, 255);
+    while (digitalRead(read_plaf) == 1) {
+      delay(100);
+  }
+for (int i = 255; i>0; i--) {
+  Serial.println(i);
+  analogWrite(send_plaf, i);  
+  delay(10);
+}
 }
 
 digitalWrite(send_gauche, LOW);
