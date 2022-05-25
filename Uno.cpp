@@ -1,6 +1,6 @@
 
 #include <SoftwareSerial.h> //Include the library
-SoftwareSerial mySerial(10, 11); // RX, TX
+SoftwareSerial mySerial(11, 10); // RX, TX
 
 byte received_data[4];
 int  switch_pos;
@@ -84,6 +84,7 @@ void loop() {
         mySerial.write(0xff);
         mySerial.write(0xff);
         delay(500);
+        Serial.println("ici");
         };
       };
   
