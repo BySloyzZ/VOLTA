@@ -43,7 +43,7 @@ pinMode(read_plaf, INPUT);
 
 
 void loop() {
-if (digitalRead(read_route) == 1) {
+ if (digitalRead(read_route) == 1) {
   route();
   Serial.println("Route");
     while (digitalRead(read_route) == 1) {
@@ -213,4 +213,9 @@ void warning() {
   digitalWrite(send_gauche, LOW);
   delay(500);
   }
+}
+
+void vitesse(){
+  int valPed = map(analogRead(A0), 43, 135, 0, 255);
+  Serial.println(valPed);
 }
