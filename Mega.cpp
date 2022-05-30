@@ -24,6 +24,7 @@ int read_gauche = 11;
 int read_warning = 10;//10
 int read_droit = 9;//9
 int read_plaf = 5;
+int read_2pos = 49;
 
 void setup() {
 Serial.begin(9600);
@@ -43,6 +44,7 @@ pinMode(read_gauche, INPUT);
 pinMode(read_warning, INPUT);
 pinMode(read_droit, INPUT);
 pinMode(read_plaf, INPUT);
+pinMode(read_2pos, INPUT);
 }
 
 
@@ -222,14 +224,13 @@ void warning() {
 }
 
 void vitesse(){
-  Serial.println(digitalRead(49));
-  if (digitalRead(49) == 1 && sens_mot == false) {
+  if (digitalRead(read_2pos) == 1 && sens_mot == false) {
     sens_mot = true;
     analogWrite(send_mot, 0);
     delay(500);
     digitalWrite(send_mot2, HIGH);
   } 
-  if (digitalRead(49) == 0 && sens_mot == true) {
+  if (digitalRead(read_2pos) == 0 && sens_mot == true) {
     sens_mot = false;
     analogWrite(send_mot, 0);
     delay(500);
