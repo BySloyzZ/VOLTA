@@ -11,10 +11,12 @@ int send_croisement = 38;
 int send_gauche = 40;
 int send_droit = 26;
 int send_plaf = 6;
-
+int send_mot = 3;
+int send_mot2 = 53;
 
 bool feux_route = false;
 bool feux_croisement = false;
+bool sens_mot = true;
 
 int read_route = 12;//12
 int read_croisement = 13;//13
@@ -32,6 +34,8 @@ pinMode(send_croisement, OUTPUT);
 pinMode(send_gauche, OUTPUT);
 pinMode(send_droit, OUTPUT);
 pinMode(send_plaf, OUTPUT);
+pinMode(send_mot, OUTPUT);
+pinMode(send_mot2, OUTPUT);
 
 pinMode(read_route, INPUT);
 pinMode(read_croisement, INPUT);
@@ -218,9 +222,26 @@ void warning() {
 }
 
 void vitesse(){
-  Serial.println(analogRead(A0) - 40);
-  int valPed = map(analogRead(A0), 40, 131, 0, 255);
-  //Serial.println(valPed);
-  analogWrite(A8, valPed);
-  delay(100);
+  Serial.println(digitalRead(49));
+  if (digitalRead(49) == 1 && sens_mot == false) {
+    sens_mot = true;
+    analogWrite(send_mot, 0);
+    delay(500);
+    digitalWrite(send_mot2, HIGH);
+  } 
+  if (digitalRead(49) == 0 && sens_mot == true) {
+    sens_mot = false;
+    analogWrite(send_mot, 0);
+    delay(500);
+    digitalWrite(send_mot2, LOW);
+  }
+  
+  if (analogRead(A0) - 40 < 5) {
+    analogWrite(send_mot, 0);
+    digitalWrite(send_mot2, 0);
+  } else {
+  int valPed = map(analogRead(A0), 40, 132, 0, 255);
+  analogWrite(send_mot, valPed);
+  delay(10); 
+  }
 }
