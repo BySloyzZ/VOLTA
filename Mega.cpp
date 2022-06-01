@@ -12,7 +12,7 @@ int send_gauche = 40;
 int send_droit = 26;
 int send_plaf = 6;
 int send_mot = 3;
-int send_mot2 = 53;
+int send_mot2 = 35;
 
 bool feux_route = false;
 bool feux_croisement = false;
@@ -24,7 +24,6 @@ int read_gauche = 11;
 int read_warning = 10;//10
 int read_droit = 9;//9
 int read_plaf = 5;
-int read_2pos = 49;
 
 void setup() {
 Serial.begin(9600);
@@ -44,7 +43,6 @@ pinMode(read_gauche, INPUT);
 pinMode(read_warning, INPUT);
 pinMode(read_droit, INPUT);
 pinMode(read_plaf, INPUT);
-pinMode(read_2pos, INPUT);
 }
 
 
@@ -224,17 +222,21 @@ void warning() {
 }
 
 void vitesse(){
-  if (digitalRead(read_2pos) == 1 && sens_mot == false) {
+  Serial.println(digitalRead(49));
+  if(sens_mot == true) {
+    digitalWrite(send_mot2, HIGH);
+  } else {
+    digitalWrite(send_mot2, LOW);
+  }
+  if (digitalRead(49) == 1 && sens_mot == false) {
     sens_mot = true;
     analogWrite(send_mot, 0);
     delay(500);
-    digitalWrite(send_mot2, HIGH);
   } 
-  if (digitalRead(read_2pos) == 0 && sens_mot == true) {
+  if (digitalRead(49) == 0 && sens_mot == true) {
     sens_mot = false;
     analogWrite(send_mot, 0);
     delay(500);
-    digitalWrite(send_mot2, LOW);
   }
   
   if (analogRead(A0) - 40 < 5) {
